@@ -1,0 +1,57 @@
+backend:
+  name: github
+  repo: o00223m/Dabatigui
+  branch: main
+  auth_type: pkce
+  app_id: Ov23liaWbEa1ymQEafGY
+
+locale: fr
+display_url: https://dabatiki.com
+
+collections:
+  - name: "contenu"
+    label: "Contenu du site"
+    files:
+      - name: "general"
+        label: "Tout le contenu"
+        file: "content.json"
+        fields:
+          - label: "Section Hero"
+            name: "hero"
+            widget: "object"
+            fields:
+              - { label: "Badge", name: "badge", widget: "string" }
+              - { label: "Titre principal", name: "title", widget: "text" }
+              - { label: "Sous-titre", name: "subtitle", widget: "text" }
+          - label: "Section Mission"
+            name: "mission"
+            widget: "object"
+            fields:
+              - { label: "Paragraphe 1", name: "text1", widget: "text" }
+              - { label: "Paragraphe 2", name: "text2", widget: "text" }
+              - { label: "Paysans formes", name: "counter_farmers", widget: "number", value_type: "int" }
+              - { label: "Regions couvertes", name: "counter_regions", widget: "number", value_type: "int" }
+              - { label: "Annees d expertise", name: "counter_years", widget: "number", value_type: "int" }
+          - label: "Services"
+            name: "services"
+            widget: "list"
+            summary: "{{fields.title}}"
+            fields:
+              - { label: "Icone emoji", name: "icon", widget: "string" }
+              - { label: "Titre", name: "title", widget: "string" }
+              - { label: "Description", name: "description", widget: "text" }
+          - label: "Section Partenaires"
+            name: "partners"
+            widget: "object"
+            fields:
+              - { label: "Sous-titre", name: "subtitle", widget: "text" }
+              - label: "Arguments"
+                name: "arguments"
+                widget: "list"
+                field: { label: "Argument", name: "item", widget: "string" }
+          - label: "Contact"
+            name: "contact"
+            widget: "object"
+            fields:
+              - { label: "Email", name: "email", widget: "string" }
+              - { label: "Localisation", name: "location", widget: "string" }
