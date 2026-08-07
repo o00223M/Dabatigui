@@ -1,6 +1,9 @@
 backend:
-  name: git-gateway
+  name: github
+  repo: o00223m/Dabatigui
   branch: main
+  auth_type: pkce
+  app_id: Ov23liaWbEa1ymQEafGY
 
 locale: fr
 display_url: https://dabatiki.com
