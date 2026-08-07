@@ -1,0 +1,49 @@
+{
+  "hero": {
+    "badge": "Bamako, Mali · Afrique Francophone",
+    "title": "Quand le paysan africain maîtrise la technologie, c'est tout un continent qui se nourrit.",
+    "subtitle": "Dabatiki forme et accompagne les agriculteurs d'Afrique francophone face au changement climatique et à l'innovation technologique."
+  },
+  "mission": {
+    "text1": "Des millions de paysans africains font face seuls à des défis qu'ils n'ont pas choisis : saisons imprévisibles, sécheresses, nouvelles maladies des cultures.",
+    "text2": "Dabatiki est né pour changer ça — en rendant accessibles les outils et savoirs qui transforment l'agriculture.",
+    "counter_farmers": 500,
+    "counter_regions": 10,
+    "counter_years": 3
+  },
+  "services": [
+    {
+      "icon": "🌦️",
+      "title": "Formation Climatique",
+      "description": "Comprendre les saisons, gérer l'eau, s'adapter aux nouvelles réalités. Des modules pratiques pour anticiper et résister."
+    },
+    {
+      "icon": "📱",
+      "title": "Vulgarisation Technologique",
+      "description": "Applications mobiles, capteurs, drones, data agricole simplifiés. La technologie rendue accessible à chaque agriculteur."
+    },
+    {
+      "icon": "🏛️",
+      "title": "Conseil Institutionnel",
+      "description": "Accompagnement ONG, ministères, projets de développement rural. Expertise terrain pour des politiques agricoles efficaces."
+    },
+    {
+      "icon": "👨🏾‍🌾",
+      "title": "Ateliers de Terrain",
+      "description": "Sessions pratiques directement dans les villages et communautés. Apprendre en faisant, dans son environnement réel."
+    }
+  ],
+  "partners": {
+    "subtitle": "Nous recherchons activement des partenariats avec des institutions, ONG et organisations agricoles d'Afrique francophone.",
+    "arguments": [
+      "Expertise terrain en Afrique francophone, ancrée dans les réalités locales",
+      "Approche pédagogique et accessible, adaptée à chaque public",
+      "Formations adaptées aux réalités locales, en langues vernaculaires",
+      "Réseau croissant de paysans formés et communautés engagées"
+    ]
+  },
+  "contact": {
+    "email": "contact@dabatiki.com",
+    "location": "Bamako, Mali"
+  }
+}

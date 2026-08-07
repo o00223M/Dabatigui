@@ -896,24 +896,88 @@
         });
     });
 
-    /* ---------- TYPEWRITER ---------- */
-    const twEl   = document.getElementById('tw');
-    const curEl  = document.getElementById('cur');
-    const phrase = "Quand le paysan africain maîtrise la technologie, c'est tout un continent qui se nourrit.";
-    let idx = 0;
+    /* ---------- CHARGEMENT DU CONTENU (content.json) ---------- */
+    async function loadContent() {
+        try {
+            const res = await fetch('content.json?v=' + Date.now());
+            if (!res.ok) return;
+            const c = await res.json();
 
-    function type() {
-        if (idx < phrase.length) {
-            twEl.textContent += phrase[idx];
-            idx++;
-            const ch  = phrase[idx - 1];
-            const ms  = (ch === ',' || ch === '.') ? 130 : ch === ' ' ? 32 : 46;
-            setTimeout(type, ms);
-        } else {
-            // hide cursor after done (optional: keep it blinking)
-        }
+            if (c.hero) {
+                const badge = document.querySelector('.hero-badge');
+                if (badge) {
+                    const dot = badge.querySelector('.hero-badge-dot');
+                    badge.textContent = ' ' + c.hero.badge;
+                    if (dot) badge.prepend(dot);
+                }
+                const sub = document.querySelector('.hero-sub');
+                if (sub) sub.textContent = c.hero.subtitle;
+                if (c.hero.title) window._TW_PHRASE = c.hero.title;
+            }
+
+            if (c.mission) {
+                const leads = document.querySelectorAll('.mission-lead');
+                if (leads[0]) leads[0].textContent = c.mission.text1;
+                if (leads[1]) leads[1].textContent = c.mission.text2;
+                const counts = document.querySelectorAll('.count');
+                if (counts[0]) counts[0].dataset.target = c.mission.counter_farmers;
+                if (counts[1]) counts[1].dataset.target = c.mission.counter_regions;
+                if (counts[2]) counts[2].dataset.target = c.mission.counter_years;
+            }
+
+            if (c.services) {
+                document.querySelectorAll('.scard').forEach((card, i) => {
+                    if (!c.services[i]) return;
+                    const svc = c.services[i];
+                    const icon = card.querySelector('.scard-icon');
+                    const h3   = card.querySelector('h3');
+                    const p    = card.querySelector('p');
+                    if (icon) icon.textContent = svc.icon;
+                    if (h3)   h3.textContent   = svc.title;
+                    if (p)    p.textContent    = svc.description;
+                });
+            }
+
+            if (c.partners) {
+                const pSub = document.querySelector('.partners-header > p');
+                if (pSub) pSub.textContent = c.partners.subtitle;
+                document.querySelectorAll('.parg p').forEach((el, i) => {
+                    if (c.partners.arguments[i]) el.textContent = c.partners.arguments[i];
+                });
+            }
+
+            if (c.contact) {
+                document.querySelectorAll('a[href^="mailto:"]').forEach(a => {
+                    a.href        = 'mailto:' + c.contact.email;
+                    a.textContent = c.contact.email;
+                });
+                const loc = document.querySelector('.cdetail strong');
+                if (loc) loc.textContent = c.contact.location;
+            }
+
+        } catch (e) { /* fallback : contenu HTML statique */ }
     }
-    setTimeout(type, 900);
+
+    /* ---------- TYPEWRITER ---------- */
+    const twEl = document.getElementById('tw');
+    window._TW_PHRASE = "Quand le paysan africain maîtrise la technologie, c'est tout un continent qui se nourrit.";
+
+    function startTypewriter() {
+        let idx = 0;
+        function type() {
+            const phrase = window._TW_PHRASE;
+            if (idx < phrase.length) {
+                twEl.textContent += phrase[idx];
+                idx++;
+                const ch = phrase[idx - 1];
+                const ms = (ch === ',' || ch === '.') ? 130 : ch === ' ' ? 32 : 46;
+                setTimeout(type, ms);
+            }
+        }
+        type();
+    }
+
+    loadContent().finally(() => setTimeout(startTypewriter, 900));
 
     /* ---------- PARALLAX HERO ---------- */
     const heroBg = document.getElementById('heroBg');
